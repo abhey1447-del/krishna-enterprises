@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krishna Enterprises — Pipes, Sheets, Gates &amp; Hardware | Palampur Road</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --charcoal:#23262b;
+    --charcoal-2:#2c3036;
+    --steel:#5b6470;
+    --silver:#cdd2d8;
+    --silver-2:#e6e9ec;
+    --paper:#eeebe3;
+    --teal:#1f7a6e;
+    --teal-dark:#155349;
+    --blue-sheet:#2f4f7a;
+    --safety:#d2531f;
+    --safety-dark:#a8401a;
+    --rivet:#9aa1aa;
+    --text-dark:#1c1e22;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--text-dark);
+    font-family:'Inter','Noto Sans Devanagari',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Oswald','Noto Sans Devanagari',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.02em;
+  }
+  html[lang="hi"] h1, html[lang="hi"] h2, html[lang="hi"] h3, html[lang="hi"] h4{
+    text-transform:none;
+    font-family:'Noto Sans Devanagari',sans-serif;
+    letter-spacing:0;
+  }
+  .mono{font-family:'JetBrains Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(35,38,43,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--safety);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;
+    gap:16px;
+  }
+  .brand{
+    color:var(--silver-2);
+    font-family:'Oswald',sans-serif;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:0.04em;
+    flex-shrink:0;
+  }
+  .brand span{color:var(--safety);}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{
+    color:var(--silver);
+    font-size:13px;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    transition:color .2s;
+  }
+  .nav-links a:hover, .nav-links a:focus-visible{color:var(--safety);}
+  .nav-right{display:flex;align-items:center;gap:12px;}
+  .lang-toggle{
+    display:flex;
+    background:rgba(255,255,255,0.06);
+    border:1px solid #4a5059;
+    border-radius:20px;
+    padding:3px;
+    gap:2px;
+  }
+  .lang-toggle button{
+    border:none;
+    background:transparent;
+    color:var(--steel);
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    font-weight:600;
+    padding:6px 13px;
+    border-radius:16px;
+    cursor:pointer;
+    transition:background .2s, color .2s;
+  }
+  .lang-toggle button.active{
+    background:var(--safety);
+    color:#fff;
+  }
+  .nav-call{
+    background:var(--safety);
+    color:#fff;
+    font-size:13px;
+    font-weight:600;
+    padding:9px 16px;
+    border-radius:2px;
+    letter-spacing:0.04em;
+    white-space:nowrap;
+  }
+  .nav-call:hover{background:var(--safety-dark);}
+  @media (max-width:780px){
+    .nav-links{display:none;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    background:linear-gradient(180deg, var(--charcoal) 0%, var(--charcoal-2) 100%);
+    display:flex;
+    align-items:center;
+    padding:140px 24px 80px;
+    overflow:hidden;
+  }
+  .hero-slideshow{
+    position:absolute;
+    inset:0;
+    z-index:0;
+  }
+  .hero-slideshow img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1.8s ease-in-out;
+  }
+  .hero-slideshow img.active{opacity:1;}
+  .hero-slideshow::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(210,83,31,0.15), transparent 55%),
+      linear-gradient(100deg, rgba(35,38,43,0.97) 0%, rgba(35,38,43,0.9) 42%, rgba(35,38,43,0.55) 75%, rgba(35,38,43,0.35) 100%);
+  }
+  .hero-inner{
+    max-width:1180px;
+    margin:0 auto;
+    width:100%;
+    position:relative;
+    z-index:2;
+  }
+  .eyebrow{
+    color:var(--safety);
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:28px;height:2px;
+    background:var(--safety);
+    display:inline-block;
+  }
+  .stock-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:rgba(31,122,110,0.15);
+    border:1px solid rgba(31,122,110,0.5);
+    color:#7fd9c9;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.05em;
+    padding:7px 14px;
+    border-radius:20px;
+    margin-bottom:22px;
+  }
+  .stock-badge .dot{width:6px;height:6px;border-radius:50%;background:#7fd9c9;}
+  .hero h1{
+    color:var(--silver-2);
+    font-size:clamp(40px,6.5vw,78px);
+    line-height:1.02;
+    font-weight:700;
+    max-width:800px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--safety);
+  }
+  .hero p{
+    color:var(--silver);
+    font-size:18px;
+    max-width:560px;
+    margin-top:24px;
+    line-height:1.6;
+    font-weight:400;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    margin-top:36px;
+    flex-wrap:wrap;
+  }
+  .plate-btn{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    background:linear-gradient(180deg,var(--safety),var(--safety-dark));
+    border:1px solid var(--safety-dark);
+    border-radius:4px;
+    padding:13px 22px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 4px 10px rgba(0,0,0,0.3);
+    transition:transform .15s;
+  }
+  .plate-btn:hover{transform:translateY(-2px);}
+  .plate-btn .label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:rgba(255,255,255,0.75);
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+  }
+  .plate-btn .num{
+    color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:17px;
+    font-weight:600;
+  }
+  .scroll-btn{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:2px;
+    background:linear-gradient(180deg,#3a3f46,#2a2d32);
+    border:1px solid #4a5059;
+    border-radius:4px;
+    padding:13px 22px;
+    color:var(--silver-2);
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    cursor:pointer;
+    transition:border-color .2s;
+  }
+  .scroll-btn:hover{border-color:var(--teal);}
+
+  /* ---------- CORRUGATED DIVIDER ---------- */
+  .corrugate{
+    height:64px;
+    width:100%;
+    position:relative;
+  }
+  .corrugate.top{
+    background-image: repeating-linear-gradient(
+      100deg,
+      var(--teal) 0px, var(--teal) 16px,
+      var(--blue-sheet) 16px, var(--blue-sheet) 32px,
+      var(--safety) 32px, var(--safety) 48px,
+      var(--teal-dark) 48px, var(--teal-dark) 64px
+    );
+    clip-path: polygon(
+      0% 30%, 4% 10%, 8% 30%, 12% 10%, 16% 30%, 20% 10%, 24% 30%, 28% 10%,
+      32% 30%, 36% 10%, 40% 30%, 44% 10%, 48% 30%, 52% 10%, 56% 30%, 60% 10%,
+      64% 30%, 68% 10%, 72% 30%, 76% 10%, 80% 30%, 84% 10%, 88% 30%, 92% 10%,
+      96% 30%, 100% 10%, 100% 100%, 0% 100%
+    );
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:96px 24px;}
+  .wrap{max-width:1180px;margin:0 auto;}
+  .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+    margin-bottom:52px;
+    flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-size:clamp(30px,4vw,46px);
+    color:var(--charcoal);
+  }
+  .section-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--teal-dark);
+    background:rgba(31,122,110,0.1);
+    border:1px solid rgba(31,122,110,0.3);
+    padding:6px 12px;
+    border-radius:3px;
+    white-space:nowrap;
+  }
+
+  /* ---------- PRODUCT CATEGORY CARDS ---------- */
+  .products{background:var(--paper);}
+  .cat-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+  @media (max-width:860px){ .cat-grid{grid-template-columns:1fr;} }
+
+  .cat-card{
+    background:#fff;
+    border:1px solid #ddd8cc;
+    border-radius:8px;
+    overflow:hidden;
+    transition:transform .2s, box-shadow .2s;
+    display:flex;
+    flex-direction:column;
+  }
+  .cat-card:hover{transform:translateY(-4px); box-shadow:0 16px 34px rgba(35,38,43,0.14);}
+  .cat-card.full{grid-column:1 / -1;}
+  .cat-photo{
+    position:relative;
+    height:200px;
+    overflow:hidden;
+  }
+  .cat-photo img{width:100%;height:100%;object-fit:cover;}
+  .cat-photo .cat-num{
+    position:absolute;
+    top:14px;left:14px;
+    background:rgba(35,38,43,0.85);
+    color:var(--silver-2);
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    letter-spacing:0.08em;
+    padding:5px 10px;
+    border-radius:3px;
+  }
+  .cat-body{padding:24px 26px 26px;}
+  .cat-body h3{
+    font-size:21px;
+    color:var(--charcoal);
+    margin-bottom:10px;
+  }
+  .cat-items{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .cat-items span{
+    font-size:12.5px;
+    color:var(--teal-dark);
+    background:rgba(31,122,110,0.08);
+    border:1px solid rgba(31,122,110,0.25);
+    padding:5px 10px;
+    border-radius:14px;
+    font-family:'Inter',sans-serif;
+    font-weight:500;
+  }
+
+  /* ---------- GALLERY STRIP ---------- */
+  .gallery{background:var(--charcoal); padding:0;}
+  .gallery-grid{display:grid; grid-template-columns:1fr 1fr;}
+  @media (max-width:760px){ .gallery-grid{grid-template-columns:1fr;} }
+  .slideshow{
+    position:relative;
+    min-height:380px;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:32px;
+    background:#2c3036;
+  }
+  .slideshow img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1.2s ease-in-out;
+  }
+  .slideshow img.active{opacity:1;}
+  .slideshow::after{
+    content:'';
+    position:absolute;inset:0;
+    background:linear-gradient(180deg, rgba(35,38,43,0) 40%, rgba(20,22,25,0.85) 100%);
+    z-index:1;
+  }
+  .slideshow .tag{
+    position:relative;z-index:2;
+    color:#fff;
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    background:rgba(0,0,0,0.4);
+    padding:8px 14px;
+    border-left:3px solid var(--safety);
+  }
+  .slideshow .dots{
+    position:absolute;
+    bottom:16px; right:16px;
+    z-index:2;
+    display:flex;
+    gap:6px;
+  }
+  .slideshow .dots span{
+    width:7px;height:7px;border-radius:50%;
+    background:rgba(255,255,255,0.35);
+    transition:background .3s;
+  }
+  .slideshow .dots span.active{background:var(--safety);}
+
+  /* ---------- WHY US ---------- */
+  .why{background:var(--silver-2);}
+  .why-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  @media (max-width:860px){ .why-grid{grid-template-columns:1fr; gap:36px;} }
+  .why h2{font-size:clamp(28px,4vw,42px); color:var(--charcoal); margin-bottom:18px;}
+  .why p.lead{font-size:16px; color:var(--steel); line-height:1.7; margin-bottom:8px;}
+  .stat-row{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-top:28px;}
+  .stat{background:#fff; border:1px solid #d7d2c5; border-radius:6px; padding:18px 20px;}
+  .stat .n{font-family:'Oswald',sans-serif; font-size:32px; font-weight:700; color:var(--safety);}
+  .stat .l{font-size:12px; letter-spacing:0.06em; text-transform:uppercase; color:var(--steel); margin-top:4px;}
+  .why-list{display:flex;flex-direction:column;gap:14px;}
+  .why-item{display:flex; gap:16px; background:#fff; border:1px solid #d7d2c5; border-radius:6px; padding:18px 20px;}
+  .why-item .num{font-family:'JetBrains Mono',monospace; color:var(--teal-dark); font-weight:600; font-size:14px; flex-shrink:0; padding-top:2px;}
+  .why-item h4{font-size:15px; color:var(--charcoal); margin-bottom:4px; text-transform:none; font-family:'Inter',sans-serif; font-weight:600;}
+  .why-item p{font-size:13.5px; color:var(--steel); line-height:1.5;}
+
+  /* ---------- CONTACT / NAMEPLATE ---------- */
+  .contact{background:var(--charcoal); position:relative;}
+  .nameplate{
+    background:linear-gradient(180deg,#3a3f46,#23262b);
+    border:1px solid #4a5059;
+    border-radius:8px;
+    padding:48px;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.05), 0 20px 50px rgba(0,0,0,0.4);
+    position:relative;
+  }
+  .nameplate::before, .nameplate::after, .np-r2::before, .np-r2::after{
+    content:'';
+    position:absolute;
+    width:10px;height:10px;border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, #d4d8dc, var(--rivet) 55%, #6b7178 100%);
+  }
+  .nameplate::before{top:16px;left:16px;}
+  .nameplate::after{top:16px;right:16px;}
+  .np-r2::before{bottom:16px;left:16px;}
+  .np-r2::after{bottom:16px;right:16px;}
+  @media (max-width:600px){ .nameplate{padding:32px 22px;} }
+
+  .np-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    flex-wrap:wrap; gap:24px; padding-bottom:28px; border-bottom:1px dashed #565b63;
+  }
+  .np-top h2{color:var(--silver-2); font-size:clamp(26px,3.4vw,36px);}
+  .np-top .gst{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--steel); text-align:right;}
+  .np-top .gst b{color:var(--silver);display:block;font-size:12px;letter-spacing:0.05em;}
+
+  .contacts-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:24px; padding-top:28px;}
+  @media (max-width:640px){ .contacts-grid{grid-template-columns:1fr;} }
+  .person{border-left:3px solid var(--safety); padding-left:18px;}
+  .person .role{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--teal); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:6px;}
+  .person h3{color:var(--silver-2); font-size:21px; margin-bottom:8px;}
+  .person a.phone{
+    display:inline-block; color:#fff; font-family:'JetBrains Mono',monospace; font-size:16px;
+    background:rgba(210,83,31,0.18); border:1px solid rgba(210,83,31,0.5); padding:6px 12px; border-radius:3px;
+    transition:background .2s;
+  }
+  .person a.phone:hover{background:rgba(210,83,31,0.35);}
+
+  .np-bottom{
+    margin-top:32px; padding-top:24px; border-top:1px dashed #565b63;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:20px;
+  }
+  .addr-block{color:var(--silver); font-size:14.5px; line-height:1.6; max-width:420px;}
+  .addr-block .l{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--steel);letter-spacing:0.1em;text-transform:uppercase;display:block;margin-bottom:6px;}
+  .addr-block a{color:var(--silver-2); text-decoration:underline; text-decoration-color:rgba(210,83,31,0.5);}
+
+  footer{
+    background:var(--charcoal-2); color:var(--steel); text-align:center; font-size:12.5px;
+    padding:22px; border-top:1px solid #3a3f46; font-family:'JetBrains Mono',monospace; letter-spacing:0.03em;
+  }
+  footer b{color:var(--silver);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="brand">KRISHNA<span>.</span>ENTERPRISES</div>
+    <div class="nav-links">
+      <a href="#products" data-i18n="nav_products">Products</a>
+      <a href="#why" data-i18n="nav_why">Why Us</a>
+      <a href="#contact" data-i18n="nav_contact">Contact</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-toggle">
+        <button id="btnEn" class="active" onclick="setLang('en')">EN</button>
+        <button id="btnHi" onclick="setLang('hi')">हिं</button>
+      </div>
+      <a class="nav-call" href="tel:+917807505860" data-i18n="nav_call">Call Now</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-slideshow">
+    <img class="active" src="https://images.pexels.com/photos/29842696/pexels-photo-29842696.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Large industrial steel workshop">
+    <img src="https://images.pexels.com/photos/9704349/pexels-photo-9704349.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Corrugated galvanised sheets in sunlight">
+    <img src="https://images.pexels.com/photos/32269920/pexels-photo-32269920.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Welding rods in a workshop">
+    <img src="https://images.pexels.com/photos/15508177/pexels-photo-15508177.jpeg?auto=compress&cs=tinysrgb&w=1400" alt="Metal tubes stacked in industrial warehouse">
+  </div>
+  <div class="hero-inner">
+    <div class="eyebrow" data-i18n="eyebrow">Palampur Road · Rajiana · Kangra (HP)</div>
+    <div class="stock-badge"><span class="dot"></span><span data-i18n="badge">50+ products in stock — pipes to hardware</span></div>
+    <h1 data-i18n-html="hero_title">Pipes, sheets &amp;<br>gates — <em>stocked,<br>cut, delivered.</em></h1>
+    <p data-i18n="hero_sub">Krishna Enterprises stocks 50+ products — MS &amp; SQ pipes, angle iron, rods, colour &amp; GC sheets, iron gates, wire, screws and welding supplies for builders and contractors across Kangra district.</p>
+    <div class="hero-ctas">
+      <a class="plate-btn" href="tel:+917807505860">
+        <span class="label" data-i18n="owner_label">Owner</span>
+        <span class="num">Kamal Kishore · 78075-05860</span>
+      </a>
+      <a class="scroll-btn" href="#products" data-i18n="hero_cta2">View all 50+ products ↓</a>
+    </div>
+  </div>
+</section>
+
+<div class="corrugate top" role="presentation" aria-hidden="true"></div>
+
+<section class="products" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 data-i18n="products_h2">What we stock</h2>
+      <span class="section-tag" data-i18n="products_tag">50+ products · 6 categories</span>
+    </div>
+    <div class="cat-grid">
+
+      <div class="cat-card">
+        <div class="cat-photo">
+          <span class="cat-num">01</span>
+          <img src="https://images.pexels.com/photos/12951634/pexels-photo-12951634.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Stacked steel pipes with milled ends" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="cat-body">
+          <h3 data-i18n="cat1_h3">Pipes &amp; Structural Steel</h3>
+          <div class="cat-items">
+            <span data-i18n="t_ms_pipe">MS Pipes</span>
+            <span data-i18n="t_sq_pipe">SQ Pipes</span>
+            <span data-i18n="t_angle">Angle Iron</span>
+            <span data-i18n="t_fence_angle">5 &amp; 6 ft Fencing Angle</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-photo">
+          <span class="cat-num">02</span>
+          <img src="https://images.pexels.com/photos/5623179/pexels-photo-5623179.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Neatly stacked metal rebars" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="cat-body">
+          <h3 data-i18n="cat2_h3">Rods, Wires &amp; Welding</h3>
+          <div class="cat-items">
+            <span data-i18n="t_iron_rod">Iron Rod</span>
+            <span data-i18n="t_weld_rod">Welding Rods</span>
+            <span data-i18n="t_weld_wire">Welding Wire</span>
+            <span data-i18n="t_alu_wire">Aluminium Wire</span>
+            <span data-i18n="t_iron_wire">Iron Wire</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-photo">
+          <span class="cat-num">03</span>
+          <img src="https://images.pexels.com/photos/35566424/pexels-photo-35566424.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Colour corrugated roofing sheets" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="cat-body">
+          <h3 data-i18n="cat3_h3">Sheets</h3>
+          <div class="cat-items">
+            <span data-i18n="t_colour_sheet">Colour Sheets</span>
+            <span data-i18n="t_gc_sheet">Liner &amp; GC Sheets</span>
+            <span data-i18n="t_plain_sheet">Plain Sheets</span>
+            <span data-i18n="t_fibre_sheet">Fibre Sheets</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-photo">
+          <span class="cat-num">04</span>
+          <img src="https://images.pexels.com/photos/7540035/pexels-photo-7540035.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Decorated steel gate design" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="cat-body">
+          <h3 data-i18n="cat4_h3">Gates &amp; Fabrication</h3>
+          <div class="cat-items">
+            <span data-i18n="t_gates">Iron Gates – Variety of Designs</span>
+            <span data-i18n="t_laser">Laser Cut Design Gates</span>
+            <span data-i18n="t_jali">Square Jali</span>
+            <span data-i18n="t_bails">Design Bails</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-photo">
+          <span class="cat-num">05</span>
+          <img src="https://images.pexels.com/photos/93396/pexels-photo-93396.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Screws and cutting hardware" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="cat-body">
+          <h3 data-i18n="cat5_h3">Tools &amp; Hardware</h3>
+          <div class="cat-items">
+            <span data-i18n="t_blade">Cutter Blades – 4" &amp; 14"</span>
+            <span data-i18n="t_cutter">Cutters</span>
+            <span data-i18n="t_screws">Screws – 25mm / 55mm / 65mm</span>
+            <span data-i18n="t_screws2">Painted &amp; Non-Painted</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cat-card">
+        <div class="cat-photo">
+          <span class="cat-num">06</span>
+          <img src="https://images.pexels.com/photos/147634/pexels-photo-147634.jpeg?auto=compress&cs=tinysrgb&w=700" alt="Steel handle on a gate" loading="lazy" onerror="this.style.display='none'">
+        </div>
+        <div class="cat-body">
+          <h3 data-i18n="cat6_h3">Gate Handles</h3>
+          <div class="cat-items">
+            <span data-i18n="t_handles">Steel &amp; Iron Handles</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="gallery">
+  <div class="gallery-grid">
+    <div class="slideshow" data-slideshow="pipes">
+      <img class="active" src="https://images.pexels.com/photos/12951634/pexels-photo-12951634.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Stacked steel pipes with milled ends">
+      <img src="https://images.pexels.com/photos/36878025/pexels-photo-36878025.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Industrial warehouse with steel pipe storage">
+      <img src="https://images.pexels.com/photos/33996166/pexels-photo-33996166.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Industrial yard with stacked steel pipes and cranes">
+      <img src="https://images.pexels.com/photos/5623179/pexels-photo-5623179.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Neatly stacked metal rebars">
+      <span class="tag" data-i18n="gal1">All types of MS &amp; SQ pipes, angle, iron rod</span>
+      <div class="dots"><span class="active"></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="slideshow" data-slideshow="gates">
+      <img class="active" src="https://images.pexels.com/photos/7540035/pexels-photo-7540035.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Decorated steel gate with scrollwork">
+      <img src="https://images.pexels.com/photos/32961547/pexels-photo-32961547.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Ornate iron gate in urban alleyway">
+      <img src="https://images.pexels.com/photos/22590809/pexels-photo-22590809.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Decorative iron gate leading to courtyard">
+      <img src="https://images.pexels.com/photos/33388021/pexels-photo-33388021.jpeg?auto=compress&cs=tinysrgb&w=1000" alt="Elegant wrought iron gate in lush garden">
+      <span class="tag" data-i18n="gal2">Gates, jali, bails &amp; laser designs</span>
+      <div class="dots"><span class="active"></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+</div>
+
+<section class="why" id="why">
+  <div class="wrap why-grid">
+    <div>
+      <h2 data-i18n-html="why_h2">Why builders<br>call Krishna first</h2>
+      <p class="lead" data-i18n="why_lead">Run by Kamal Kishore out of Palampur Road, Rajiana — close enough to site to send material the same day.</p>
+      <div class="stat-row">
+        <div class="stat"><div class="n">50+</div><div class="l" data-i18n="stat1">Products in stock</div></div>
+        <div class="stat"><div class="n">6</div><div class="l" data-i18n="stat2">Categories</div></div>
+      </div>
+    </div>
+    <div class="why-list">
+      <div class="why-item">
+        <span class="num">01</span>
+        <div><h4 data-i18n="w1_h">Cut to your spec</h4><p data-i18n="w1_p">Pipes, rods and sheets cut and bundled to the length your site needs — no extra wastage to pay for.</p></div>
+      </div>
+      <div class="why-item">
+        <span class="num">02</span>
+        <div><h4 data-i18n="w2_h">One stock yard, 50+ products</h4><p data-i18n="w2_p">Pipe, angle, rod, sheet, gate fabrication and hardware all under one roof — fewer suppliers to coordinate.</p></div>
+      </div>
+      <div class="why-item">
+        <span class="num">03</span>
+        <div><h4 data-i18n="w3_h">Local to Kangra sites</h4><p data-i18n="w3_p">Based on Palampur Road, Rajiana — short lead time for deliveries around N/Bagwan and the wider district.</p></div>
+      </div>
+      <div class="why-item">
+        <span class="num">04</span>
+        <div><h4 data-i18n="w4_h">Talk to the owner directly</h4><p data-i18n="w4_p">Kamal Kishore takes calls himself for quotes, custom gate designs and stock checks.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="nameplate np-r2">
+      <div class="np-top">
+        <h2>Krishna Enterprises</h2>
+        <div class="gst"><b data-i18n="gstin_label">GSTIN</b>02CSBPD8769E1ZW</div>
+      </div>
+      <div class="contacts-grid">
+        <div class="person">
+          <div class="role" data-i18n="owner_label">Owner</div>
+          <h3>Kamal Kishore</h3>
+          <a class="phone" href="tel:+917807505860">M. 78075-05860</a>
+        </div>
+      </div>
+      <div class="np-bottom">
+        <div class="addr-block">
+          <span class="l" data-i18n="addr_label">Address</span>
+          <span data-i18n="addr_text">Palampur Road, 53 Miles, Rajiana, Teh. N/Bagwan, Distt. Kangra (HP)</span>
+        </div>
+        <div class="addr-block">
+          <span class="l" data-i18n="email_label">Email</span>
+          <a href="mailto:ranjanaradh@gmail.com">ranjanaradh@gmail.com</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>Krishna Enterprises</b> — <span data-i18n="footer_text">Palampur Road, Rajiana, Distt. Kangra (HP) · GSTIN 02CSBPD8769E1ZW</span>
+</footer>
+
+<script>
+const translations = {
+  nav_products:{en:"Products",hi:"प्रोडक्ट्स"},
+  nav_why:{en:"Why Us",hi:"हमें क्यों चुनें"},
+  nav_contact:{en:"Contact",hi:"संपर्क करें"},
+  nav_call:{en:"Call Now",hi:"कॉल करें"},
+  eyebrow:{en:"Palampur Road · Rajiana · Kangra (HP)",hi:"पालमपुर रोड · रजियाना · कांगड़ा (हि.प्र.)"},
+  badge:{en:"50+ products in stock — pipes to hardware",hi:"50+ प्रोडक्ट्स स्टॉक में — पाइप से हार्डवेयर तक"},
+  hero_title:{en:'Pipes, sheets &amp;<br>gates — <em>stocked,<br>cut, delivered.</em>',hi:'पाइप, शीट &amp;<br>गेट — <em>स्टॉक में,<br>कट करके डिलीवर।</em>'},
+  hero_sub:{en:"Krishna Enterprises stocks 50+ products — MS & SQ pipes, angle iron, rods, colour & GC sheets, iron gates, wire, screws and welding supplies for builders and contractors across Kangra district.",
+            hi:"कृष्णा एंटरप्राइजेज में 50+ प्रोडक्ट्स स्टॉक में हैं — MS व SQ पाइप, एंगल आयरन, रॉड, कलर व GC शीट, आयरन गेट, वायर, स्क्रू और वेल्डिंग सामान — कांगड़ा जिले के बिल्डरों और ठेकेदारों के लिए।"},
+  owner_label:{en:"Owner",hi:"मालिक"},
+  hero_cta2:{en:"View all 50+ products ↓",hi:"सभी 50+ प्रोडक्ट्स देखें ↓"},
+  products_h2:{en:"What we stock",hi:"हमारे पास क्या है"},
+  products_tag:{en:"50+ products · 6 categories",hi:"50+ प्रोडक्ट्स · 6 केटेगरी"},
+  cat1_h3:{en:"Pipes & Structural Steel",hi:"पाइप व स्ट्रक्चरल स्टील"},
+  t_ms_pipe:{en:"MS Pipes",hi:"MS पाइप"},
+  t_sq_pipe:{en:"SQ Pipes",hi:"SQ पाइप"},
+  t_angle:{en:"Angle Iron",hi:"एंगल आयरन"},
+  t_fence_angle:{en:"5 & 6 ft Fencing Angle",hi:"5 व 6 फुट फेंसिंग एंगल"},
+  cat2_h3:{en:"Rods, Wires & Welding",hi:"रॉड, वायर व वेल्डिंग"},
+  t_iron_rod:{en:"Iron Rod",hi:"आयरन रॉड"},
+  t_weld_rod:{en:"Welding Rods",hi:"वेल्डिंग रॉड"},
+  t_weld_wire:{en:"Welding Wire",hi:"वेल्डिंग वायर"},
+  t_alu_wire:{en:"Aluminium Wire",hi:"एल्युमिनियम वायर"},
+  t_iron_wire:{en:"Iron Wire",hi:"आयरन वायर"},
+  cat3_h3:{en:"Sheets",hi:"शीट"},
+  t_colour_sheet:{en:"Colour Sheets",hi:"कलर शीट"},
+  t_gc_sheet:{en:"Liner & GC Sheets",hi:"लाइनर व GC शीट"},
+  t_plain_sheet:{en:"Plain Sheets",hi:"प्लेन शीट"},
+  t_fibre_sheet:{en:"Fibre Sheets",hi:"फाइबर शीट"},
+  cat4_h3:{en:"Gates & Fabrication",hi:"गेट व फैब्रिकेशन"},
+  t_gates:{en:"Iron Gates – Variety of Designs",hi:"आयरन गेट – कई डिज़ाइन"},
+  t_laser:{en:"Laser Cut Design Gates",hi:"लेज़र कट डिज़ाइन गेट"},
+  t_jali:{en:"Square Jali",hi:"स्क्वायर जाली"},
+  t_bails:{en:"Design Bails",hi:"डिज़ाइन बेल"},
+  t_handles:{en:"Steel & Iron Handles",hi:"स्टील व आयरन हैंडल"},
+  cat6_h3:{en:"Gate Handles",hi:"गेट हैंडल"},
+  cat5_h3:{en:"Tools & Hardware",hi:"टूल्स व हार्डवेयर"},
+  t_blade:{en:'Cutter Blades – 4" & 14"',hi:'कटर ब्लेड – 4" व 14"'},
+  t_cutter:{en:"Cutters",hi:"कटर"},
+  t_screws:{en:"Screws – 25mm / 55mm / 65mm",hi:"स्क्रू – 25mm / 55mm / 65mm"},
+  t_screws2:{en:"Painted & Non-Painted",hi:"पेंटेड व नॉन-पेंटेड"},
+  gal1:{en:"All types of MS & SQ pipes, angle, iron rod",hi:"सभी प्रकार के MS व SQ पाइप, एंगल, आयरन रॉड"},
+  gal2:{en:"Gates, jali, bails & laser designs",hi:"गेट, जाली, बेल व लेज़र डिज़ाइन"},
+  why_h2:{en:"Why builders<br>call Krishna first",hi:"बिल्डर सबसे पहले<br>कृष्णा को क्यों बुलाते हैं"},
+  why_lead:{en:"Run by Kamal Kishore out of Palampur Road, Rajiana — close enough to site to send material the same day.",
+            hi:"पालमपुर रोड, रजियाना से कमल किशोर द्वारा संचालित — साइट के इतने नज़दीक कि सामान उसी दिन भेजा जा सके।"},
+  stat1:{en:"Products in stock",hi:"प्रोडक्ट्स स्टॉक में"},
+  stat2:{en:"Categories",hi:"केटेगरी"},
+  w1_h:{en:"Cut to your spec",hi:"आपकी ज़रूरत के अनुसार कट"},
+  w1_p:{en:"Pipes, rods and sheets cut and bundled to the length your site needs — no extra wastage to pay for.",
+        hi:"पाइप, रॉड और शीट को आपकी साइट की ज़रूरत के अनुसार काटकर बंडल किया जाता है — कोई अतिरिक्त बर्बादी नहीं।"},
+  w2_h:{en:"One stock yard, 50+ products",hi:"एक ही जगह, 50+ प्रोडक्ट्स"},
+  w2_p:{en:"Pipe, angle, rod, sheet, gate fabrication and hardware all under one roof — fewer suppliers to coordinate.",
+        hi:"पाइप, एंगल, रॉड, शीट, गेट फैब्रिकेशन और हार्डवेयर सब एक ही जगह — अलग-अलग सप्लायर ढूंढने की ज़रूरत नहीं।"},
+  w3_h:{en:"Local to Kangra sites",hi:"कांगड़ा क्षेत्र के नज़दीक"},
+  w3_p:{en:"Based on Palampur Road, Rajiana — short lead time for deliveries around N/Bagwan and the wider district.",
+        hi:"पालमपुर रोड, रजियाना पर स्थित — N/Bagwan व आसपास के क्षेत्र में जल्दी डिलीवरी।"},
+  w4_h:{en:"Talk to the owner directly",hi:"सीधे मालिक से बात करें"},
+  w4_p:{en:"Kamal Kishore takes calls himself for quotes, custom gate designs and stock checks.",
+        hi:"कमल किशोर खुद रेट, कस्टम गेट डिज़ाइन और स्टॉक की जानकारी के लिए कॉल लेते हैं।"},
+  gstin_label:{en:"GSTIN",hi:"GSTIN"},
+  addr_label:{en:"Address",hi:"पता"},
+  addr_text:{en:"Palampur Road, 53 Miles, Rajiana, Teh. N/Bagwan, Distt. Kangra (HP)",
+             hi:"पालमपुर रोड, 53 मील, रजियाना, तहसील N/Bagwan, ज़िला कांगड़ा (हि.प्र.)"},
+  email_label:{en:"Email",hi:"ईमेल"},
+  footer_text:{en:"Palampur Road, Rajiana, Distt. Kangra (HP) · GSTIN 02CSBPD8769E1ZW",
+               hi:"पालमपुर रोड, रजियाना, ज़िला कांगड़ा (हि.प्र.) · GSTIN 02CSBPD8769E1ZW"}
+};
+
+function setLang(lang){
+  document.getElementById('htmlRoot').setAttribute('lang', lang);
+  document.getElementById('btnEn').classList.toggle('active', lang==='en');
+  document.getElementById('btnHi').classList.toggle('active', lang==='hi');
+
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key = el.getAttribute('data-i18n');
+    if(translations[key]) el.textContent = translations[key][lang];
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-html');
+    if(translations[key]) el.innerHTML = translations[key][lang];
+  });
+  try{ localStorage.setItem('krishna_lang', lang); }catch(e){}
+}
+
+(function(){
+  let saved = 'en';
+  try{ saved = localStorage.getItem('krishna_lang') || 'en'; }catch(e){}
+  if(saved === 'hi') setLang('hi');
+})();
+
+// Auto-rotating image slideshows
+document.querySelectorAll('.slideshow, .hero-slideshow').forEach(function(box){
+  const imgs = box.querySelectorAll('img');
+  const dots = box.querySelectorAll('.dots span');
+  let idx = 0;
+  if(imgs.length < 2) return;
+  setInterval(function(){
+    imgs[idx].classList.remove('active');
+    if(dots[idx]) dots[idx].classList.remove('active');
+    idx = (idx + 1) % imgs.length;
+    imgs[idx].classList.add('active');
+    if(dots[idx]) dots[idx].classList.add('active');
+  }, 3500);
+});
+</script>
+
+</body>
+</html>
